@@ -26,7 +26,7 @@
 需要 Node.js 20 或更高版本。
 
 ```bash
-git clone https://github.com/<your-name>/smart-stock-picker.git
+git clone https://github.com/fm249885270/smart-stock-picker.git
 cd smart-stock-picker
 node server.js --open
 ```
@@ -91,3 +91,4 @@ docs/screenshots/  README 截图
 ## License
 
 [MIT](LICENSE)
+
