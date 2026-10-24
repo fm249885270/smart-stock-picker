@@ -1,0 +1,29 @@
+[Unit]
+Description=智能选股 Smart Stock Picker (fengmu.me)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/muge-tool
+Environment=NODE_ENV=production
+Environment=HOST=127.0.0.1
+Environment=PORT=8787
+Environment=PORT_STRICT=1
+Environment=QSIGNAL_DATA_DIR=/var/lib/muge-tool
+ExecStart=/usr/bin/node /opt/muge-tool/server.js
+Restart=always
+RestartSec=3
+StateDirectory=muge-tool
+StateDirectoryMode=0750
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+ReadWritePaths=/var/lib/muge-tool
+
+[Install]
+WantedBy=multi-user.target

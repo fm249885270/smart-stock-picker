@@ -1,0 +1,24 @@
+[Unit]
+Description=Smart Stock Picker (fengmu.me /stock/)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www
+Group=www
+WorkingDirectory=/opt/muge-tool
+Environment=NODE_ENV=production
+Environment=HOST=127.0.0.1
+Environment=PORT=8787
+Environment=PORT_STRICT=1
+Environment=QSIGNAL_DATA_DIR=/var/lib/muge-tool
+ExecStart=/usr/local/node/bin/node /opt/muge-tool/server.js
+Restart=always
+RestartSec=3
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

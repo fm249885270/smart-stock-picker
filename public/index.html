@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080a0d">
+  <meta name="description" content="智能选股：大盘评分、板块雷达、尾盘选股、自选股分析与模拟战绩。">
+  <title>智能选股 · A股量化作战台</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"/></symbol>
+    <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/><path d="m12 12 6.5-6.5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.8 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.7l6.2-.9L12 3Z"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.42 1.42-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V20h-2v-.09a1.7 1.7 0 0 0-1.1-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-1.42-1.42.06-.06A1.7 1.7 0 0 0 9.35 15a1.7 1.7 0 0 0-1.56-1.1H7.7v-2h.09A1.7 1.7 0 0 0 9.35 11a1.7 1.7 0 0 0-.34-1.88l-.06-.06 1.42-1.42.06.06a1.7 1.7 0 0 0 1.88.34 1.7 1.7 0 0 0 1.1-1.56V6.4h2v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 1.42 1.42-.06.06A1.7 1.7 0 0 0 19.4 11a1.7 1.7 0 0 0 1.56 1.1h.09v2h-.09A1.7 1.7 0 0 0 19.4 15Z"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 6v5h-5M4 18v-5h5"/><path d="M6.1 9a7 7 0 0 1 11.4-2.6L20 11M4 13l2.5 4.6A7 7 0 0 0 17.9 15"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 9-12h-7l1-8Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.6 2.4 18a2 2 0 0 0 1.8 3h15.6a2 2 0 0 0 1.8-3L13.7 3.6a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4m0 3h.01"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m3 0-1 14H7L6 7m4 4v6m4-6v6"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 6h14a2 2 0 0 1 2 2v11H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12"/><path d="M15 12h5v4h-5a2 2 0 0 1 0-4Z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 20h16"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  </svg>
+
+  <div class="page-atmosphere" aria-hidden="true"></div>
+  <div class="app-shell" id="app">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="智能选股首页">
+        <span class="brand-mark"><span>智</span></span>
+        <span class="brand-copy"><strong>智能选股</strong><small>A股量化作战台</small></span>
+      </a>
+
+      <div class="sidebar-market">
+        <div class="sidebar-market-head"><span>市场状态</span><span class="live-dot" id="side-live"><i></i>接入中</span></div>
+        <div class="sidebar-score"><strong id="side-score">--</strong><span>/ 100</span><em id="side-status">等待数据</em></div>
+        <div class="sidebar-track"><span id="side-score-bar" style="width:0%"></span><b class="pass-mark" title="60分及格线"></b></div>
+        <p id="side-market-line">正在读取市场宽度与趋势...</p>
+      </div>
+
+      <nav class="side-nav" id="side-nav" aria-label="主功能">
+        <button class="nav-item is-active" data-view="overview"><svg class="icon"><use href="#i-home"/></svg><span>今日总览</span><kbd>1</kbd></button>
+        <button class="nav-item" data-view="screener"><svg class="icon"><use href="#i-radar"/></svg><span>量化选股</span><em id="nav-screener-count" class="nav-count">0</em><kbd>2</kbd></button>
+        <button class="nav-item" data-view="tail"><svg class="icon"><use href="#i-clock"/></svg><span>尾盘确认</span><kbd>3</kbd></button>
+        <button class="nav-item" data-view="watchlist"><svg class="icon"><use href="#i-star"/></svg><span>自选股</span><em id="nav-watch-count" class="nav-count">0</em><kbd>4</kbd></button>
+        <button class="nav-item" data-view="performance"><svg class="icon"><use href="#i-chart"/></svg><span>模拟战绩</span><kbd>5</kbd></button>
+      </nav>
+
+      <div class="side-rule"></div>
+      <div class="sidebar-meta">
+        <button class="side-link" data-action="open-settings"><svg class="icon"><use href="#i-settings"/></svg>策略参数</button>
+        <button class="side-link" data-action="refresh"><svg class="icon"><use href="#i-refresh"/></svg>刷新行情</button>
+      </div>
+
+      <div class="sidebar-foot">
+        <div class="risk-note"><svg class="icon"><use href="#i-shield"/></svg><span>公开行情 · 本地运行<br><b>仅供研究，不构成投资建议</b></span></div>
+        <div class="build-info"><span>智能选股 / V1.0</span><span id="foot-data-date">--</span></div>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="page-heading">
+          <button class="icon-button mobile-menu" data-action="toggle-mobile-nav" aria-label="打开导航"><svg class="icon"><use href="#i-menu"/></svg></button>
+          <div><span class="eyebrow" id="page-kicker">COMMAND CENTER</span><h1 id="page-title">今日总览</h1></div>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="search-wrap" id="search-wrap">
+            <svg class="icon search-icon"><use href="#i-search"/></svg>
+            <input id="global-search" type="search" autocomplete="off" spellcheck="false" placeholder="搜索代码 / 名称" aria-label="搜索股票">
+            <kbd>/</kbd>
+            <div class="search-results" id="search-results" hidden></div>
+          </div>
+          <div class="data-chip" id="data-chip" title="行情数据状态"><span class="pulse-dot"></span><span id="data-chip-text">正在接入</span></div>
+          <button class="icon-button" data-action="refresh" aria-label="刷新行情" title="刷新行情"><svg class="icon"><use href="#i-refresh"/></svg></button>
+          <button class="icon-button" data-action="open-settings" aria-label="打开设置" title="策略参数"><svg class="icon"><use href="#i-settings"/></svg></button>
+        </div>
+      </header>
+
+      <div class="alert-ribbon" id="alert-ribbon" hidden>
+        <div class="alert-pulse"><svg class="icon"><use href="#i-bolt"/></svg></div>
+        <div class="alert-copy"><strong id="alert-title">信号提醒</strong><span id="alert-text"></span></div>
+        <button class="alert-action" data-view-target="screener">查看标的<svg class="icon"><use href="#i-arrow"/></svg></button>
+        <button class="icon-button ghost close-alert" data-action="dismiss-alert" aria-label="关闭提醒"><svg class="icon"><use href="#i-close"/></svg></button>
+      </div>
+
+      <main id="view-root" class="view-root" tabindex="-1">
+        <section class="loading-view" aria-label="加载中">
+          <div class="skeleton skeleton-hero"></div>
+          <div class="skeleton-grid"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+          <div class="skeleton skeleton-list"></div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>数据源：同花顺公开行情（东方财富兜底）</span>
+        <span id="footer-updated">尚未同步</span>
+        <span>量化结果不构成任何投资建议</span>
+      </footer>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" aria-label="移动导航">
+    <button class="is-active" data-view="overview"><svg class="icon"><use href="#i-home"/></svg><span>总览</span></button>
+    <button data-view="screener"><svg class="icon"><use href="#i-radar"/></svg><span>选股</span></button>
+    <button data-view="tail"><svg class="icon"><use href="#i-clock"/></svg><span>尾盘</span></button>
+    <button data-view="watchlist"><svg class="icon"><use href="#i-star"/></svg><span>自选</span></button>
+    <button data-view="performance"><svg class="icon"><use href="#i-chart"/></svg><span>战绩</span></button>
+  </nav>
+
+  <div id="overlay-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

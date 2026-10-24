@@ -1,0 +1,15 @@
+{
+  "name": "smart-stock-picker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "智能选股：本地 A 股量化作战台：大盘评分、板块雷达、尾盘选股、自选分析与模拟战绩",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test",
+    "check": "node --check server.js && node --check lib/strategy.js && node --check lib/ths.js && node --check lib/marketdata.js && node --check public/js/app.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

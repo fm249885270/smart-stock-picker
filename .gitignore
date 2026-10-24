@@ -1,1 +1,14 @@
-node_modules/
+﻿node_modules/
+data/
+dist/
+*.log
+*.zip
+.tmp-*
+.env
+.env.*
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+.tools/
